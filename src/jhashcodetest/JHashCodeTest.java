@@ -64,11 +64,11 @@ public class JHashCodeTest {
             
             if(hash1.equalsIgnoreCase(hash2))
             {
-                System.out.println("Same result");
+                System.out.println("Same result!");
             }
             else
             {
-                System.out.println("Different result");
+                System.out.println("Different result!");
             }
         }
         catch(Throwable t)
