@@ -52,15 +52,21 @@ public class JHashCodeTest {
                     return;
             }
 
+            long start = System.currentTimeMillis();
             Core core = new Core(file, algorithm);
             String hash1 = core.generateHash();
+            long elapsed = System.currentTimeMillis() - start;
             
             System.out.println("Hash (Core): " + hash1);
+            System.out.println("Hash (Core): " + elapsed + " ms");
             
+            start = System.currentTimeMillis();
             DigestUtils digestUtils = new DigestUtils(MessageDigest.getInstance(algorithm));
             String hash2 = digestUtils.digestAsHex(file);
+            elapsed = System.currentTimeMillis() - start;
             
             System.out.println("Hash (DigestUtils): " + hash2);
+            System.out.println("Hash (DigestUtils): " + elapsed + " ms");
             
             if(hash1.equalsIgnoreCase(hash2))
             {
