@@ -53,20 +53,20 @@ public class JHashCodeTest {
             }
 
             long start = System.currentTimeMillis();
-            Core core = new Core(file, algorithm);
-            String hash1 = core.generateHash();
+            DigestUtils digestUtils = new DigestUtils(MessageDigest.getInstance(algorithm));
+            String hash1 = digestUtils.digestAsHex(file);
             long elapsed = System.currentTimeMillis() - start;
             
-            System.out.println("Hash (Core): " + hash1);
-            System.out.println("Hash (Core): " + elapsed + " ms");
-            
+            System.out.println("Hash (DigestUtils): " + hash1);
+            System.out.println("Hash (DigestUtils): " + elapsed + " ms");
+
             start = System.currentTimeMillis();
-            DigestUtils digestUtils = new DigestUtils(MessageDigest.getInstance(algorithm));
-            String hash2 = digestUtils.digestAsHex(file);
+            Core core = new Core(file, algorithm);
+            String hash2 = core.generateHash();
             elapsed = System.currentTimeMillis() - start;
             
-            System.out.println("Hash (DigestUtils): " + hash2);
-            System.out.println("Hash (DigestUtils): " + elapsed + " ms");
+            System.out.println("Hash (Core): " + hash2);
+            System.out.println("Hash (Core): " + elapsed + " ms");
             
             if(hash1.equalsIgnoreCase(hash2))
             {
